@@ -1,7 +1,7 @@
 {
   "name": "learning-git-2",
   "version": "1.0.0",
-  "description": "For testing purposes only\r https://grzegorz-turek.github.io/learning-git-2/",
+  "description": "Rock scissors Paper:/r https://grzegorz-turek.github.io/rock-scissors-paper-3/",
   "main": "index.js",
   "scripts": {
     "init-project": "npm install && npm-run-all init:*",
@@ -19,15 +19,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/grzegorz-turek/learning-git-2.git"
+    "url": "git+https://github.com/grzegorz-turek/rock-scissors-paper-3.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/grzegorz-turek/learning-git-2/issues"
+    "url": "https://github.com/grzegorz-turek/rock-scissors-paper-3/issues"
   },
-  "homepage": "https://github.com/grzegorz-turek/learning-git-2#readme",
+  "homepage": "https://github.com/grzegorz-turek/rock-scissors-paper-3#readme",
   "devDependencies": {
     "autoprefixer-cli": "^1.0.0",
     "browser-sync": "^2.26.3",
