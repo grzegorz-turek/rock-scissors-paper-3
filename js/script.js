@@ -9,20 +9,13 @@
     var finalResult = document.getElementById('final-result');
     var message = document.getElementById('message');
 
-    var roundNumber = 0;
-    var roundWonByComputerNumber = 0;
-    var roundWonByPlayerNumber = 0;
-    var roundToWinNumber = 0;
-    var roundWinner = 0;
-    var computerMove = 0;
-
     var params = {
-        roundNumber: roundNumber,
-        roundWonByComputerNumber: roundWonByComputerNumber,
-        roundWonByPlayerNumber: roundWonByPlayerNumber,
-        roundToWinNumber: roundToWinNumber,
-        roundWinner: roundWinner,
-        computerMove: computerMove,
+        roundNumber: 0,
+        roundWonByComputerNumber: 0,
+        roundWonByPlayerNumber: 0,
+        roundToWinNumber: 0,
+        roundWinner: 0,
+        computerMove: 0,
         progress: []
     };
 
@@ -41,7 +34,7 @@
         if ((params.roundToWinNumber <= params.roundWonByComputerNumber) || (params.roundToWinNumber <= params.roundWonByPlayerNumber)) {
             pleasePressTheNewGameButton();
             return;
-        } 
+        }
         params.computerMove = newGetRandomIntInclusive();
         if ((params.computerMove == 'rock' && playerMove == 'scissors') || (params.computerMove == 'scissors' && playerMove == 'paper') || (params.computerMove == 'paper' && playerMove == 'rock')) {
             output.innerHTML = 'ROUND LOST';
@@ -49,11 +42,11 @@
             params.roundWinner = 'computer';
         } else if (params.computerMove == playerMove) {
             output.innerHTML = 'TIE';
-            params.roundWinner ='tie'
+            params.roundWinner ='tie';
         } else {
             output.innerHTML = 'YOU WON';
             params.roundWonByPlayerNumber++;
-            params.roundWinner = 'you'
+            params.roundWinner = 'you';
         }
         roundCount();
         addGameStats(playerMove);
@@ -76,6 +69,7 @@
             keyRoundWinner: params.roundWinner,
             keyGameResult: (params.roundWonByPlayerNumber + ' - ' + params.roundWonByComputerNumber)
         });
+        console.log('params.progress', params.progress); // TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
     }
 
     function pleasePressTheNewGameButton() {
@@ -113,7 +107,7 @@
     }
 
     function newGetRandomIntInclusive() {
-        var getRandomIntInclusiveValue = getRandomIntInclusive(1, 3)
+        var getRandomIntInclusiveValue = getRandomIntInclusive(1, 3);
         switch(getRandomIntInclusiveValue) {
             case 1:
                 return 'rock';
@@ -126,29 +120,29 @@
         }
     }
 
-	var showModalOne = function(){
+    var showModalOne = function() {
         document.querySelector('#modal-overlay').classList.add('show');
         document.querySelector('#modal-one').classList.add('show');
         showGameStats();
     };
 
-	var hideModal = function(event){
-		document.querySelector('#modal-overlay').classList.remove('show');
+    var hideModal = function(event) {
+        document.querySelector('#modal-overlay').classList.remove('show');
     };
-    
-	var closeButtons = document.querySelectorAll('.modal .close');
-	for(var i = 0; i < closeButtons.length; i++){
-		closeButtons[i].addEventListener('click', hideModal);
+
+    var closeButtons = document.querySelectorAll('.modal .close');
+    for (var i = 0; i < closeButtons.length; i++) {
+        closeButtons[i].addEventListener('click', hideModal);
     }
-    
-	document.querySelector('#modal-overlay').addEventListener('click', hideModal);
-	var modals = document.querySelectorAll('.modal');
-	for(var i = 0; i < modals.length; i++){
-		modals[i].addEventListener('click', function(event){
-			event.stopPropagation();
-		});
+
+    document.querySelector('#modal-overlay').addEventListener('click', hideModal);
+    var modals = document.querySelectorAll('.modal');
+    for (var i = 0; i < modals.length; i++) {
+        modals[i].addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
     }
-    
+
     function showGameStats() {
         var mainDiv = document.getElementById('modalcontent');
         mainDiv.innerHTML = '';
@@ -188,7 +182,7 @@
             divRoundWinner.innerHTML += params.progress[i].keyRoundWinner;
             var divGameResult = document.createElement('div');
             divContainer.appendChild(divGameResult);
-            divGameResult.innerHTML += params.progress[i].keyGameResult;            
-        };
+            divGameResult.innerHTML += params.progress[i].keyGameResult;
+        }
     };
-})(); 
+})();
