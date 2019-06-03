@@ -123,8 +123,6 @@
         document.querySelector('#modal-overlay').classList.add('show');
         document.querySelector('#modal-one').classList.add('show');
         showGameStats();
-        //showGameStatsEvol(); // TEST
-
     };
 
     var hideModal = function(event) {
@@ -143,55 +141,12 @@
             event.stopPropagation();
         });
     }
-
-    function showGameStatsEvol() { // TEST
-        var gameStatsData = [];
-        var divContainer = '';
-        var divRoundNumber = '';
-        var divPlayerMove = '';
-        var divRoundWinner = '';
-        var divGameResult = '';
-
-        gameStatsData.push({
-            key2RoundNumber: 'Round Number',
-            key2PlayerMove: 'Player Move',
-            key2ComputerMove: 'Computer Move',
-            key2RoundWinner: 'Round Winner',
-            key2GameResult: 'Score'
-        });
-        for (var i = 0; i < params.progress.length; i++) {
-            gameStatsData.push({
-                key2RoundNumber: params.progress[i].keyRoundNumber,
-                key2PlayerMove: params.progress[i].keyPlayerMove,
-                key2ComputerMove: params.progress[i].keyComputerMove,
-                key2RoundWinner: params.progress[i].keyRoundWinner,
-                key2GameResult: params.progress[i].keyGameResult
-            });
-        }
-        var mainDiv = document.getElementById('modalcontent');
-        mainDiv.innerHTML = '';
-        for (var i = 0; i < gameStatsData.length; i++) {
-            divContainer = document.createElement('div');
-            mainDiv.appendChild(divContainer);
-            divContainer.setAttribute('class', 'table__row');
-            divRoundNumber = document.createElement('div');
-            divContainer.appendChild(divRoundNumber);
-            divRoundNumber.innerHTML += gameStatsData[i].key2RoundNumber;
-            divPlayerMove = document.createElement('div');
-            divContainer.appendChild(divPlayerMove);
-            divPlayerMove.innerHTML += gameStatsData[i].key2PlayerMove;
-            divComputerMove = document.createElement('div');
-            divContainer.appendChild(divComputerMove);
-            divComputerMove.innerHTML += gameStatsData[i].key2ComputerMove;
-            divRoundWinner = document.createElement('div');
-            divContainer.appendChild(divRoundWinner);
-            divRoundWinner.innerHTML += gameStatsData[i].key2RoundWinner;
-            divGameResult = document.createElement('div');
-            divContainer.appendChild(divGameResult);
-            divGameResult.innerHTML += gameStatsData[i].key2GameResult;
-        }
-        console.log('testarray: ', gameStatsData);
-    };
+    
+    function createTableCell(container, content) {
+        var div = document.createElement('div');
+        container.appendChild(div);
+        div.innerHTML += content;
+    }
 
     function showGameStats() {
         var mainDiv = document.getElementById('modalcontent');
@@ -199,40 +154,27 @@
         var divContainer = document.createElement('div');
         mainDiv.appendChild(divContainer);
         divContainer.setAttribute('class', 'table__row');
-        var divRoundNumber = document.createElement('div');
-        divContainer.appendChild(divRoundNumber);
-        divRoundNumber.innerHTML += 'Round Number';
-        var divPlayerMove = document.createElement('div');
-        divContainer.appendChild(divPlayerMove);
-        divPlayerMove.innerHTML += 'Player Move';
-        var divComputerMove = document.createElement('div');
-        divContainer.appendChild(divComputerMove);
-        divComputerMove.innerHTML += 'Computer Move';
-        var divRoundWinner = document.createElement('div');
-        divContainer.appendChild(divRoundWinner);
-        divRoundWinner.innerHTML += 'Round Winner';
-        var divGameResult = document.createElement('div');
-        divContainer.appendChild(divGameResult);
-        divGameResult.innerHTML += 'Score';
+
+        createTableCell(divContainer, 'Round Number');
+        createTableCell(divContainer, 'Player Move');
+        createTableCell(divContainer, 'Computer Move');
+        createTableCell(divContainer, 'Round Winner');
+        createTableCell(divContainer, 'Score');
+
         for (var i = 0; i < params.progress.length; i++) {
             var divContainer = document.createElement('div');
             mainDiv.appendChild(divContainer);
             divContainer.setAttribute('class', 'table__row');
-            var divRoundNumber = document.createElement('div');
-            divContainer.appendChild(divRoundNumber);
-            divRoundNumber.innerHTML += params.progress[i].keyRoundNumber;
-            var divPlayerMove = document.createElement('div');
-            divContainer.appendChild(divPlayerMove);
-            divPlayerMove.innerHTML += params.progress[i].keyPlayerMove;
-            var divComputerMove = document.createElement('div');
-            divContainer.appendChild(divComputerMove);
-            divComputerMove.innerHTML += params.progress[i].keyComputerMove;
-            var divRoundWinner = document.createElement('div');
-            divContainer.appendChild(divRoundWinner);
-            divRoundWinner.innerHTML += params.progress[i].keyRoundWinner;
-            var divGameResult = document.createElement('div');
-            divContainer.appendChild(divGameResult);
-            divGameResult.innerHTML += params.progress[i].keyGameResult;
+            Object.values(params.progress[i]).forEach(function(el) {
+                createTableCell(divContainer, el);
+            })
+        /*
+        createTableCell(divContainer, params.progress[i].keyRoundNumber);
+        createTableCell(divContainer, params.progress[i].keyPlayerMove);
+        createTableCell(divContainer, params.progress[i].keyComputerMove);
+        createTableCell(divContainer, params.progress[i].keyRoundWinner);
+        createTableCell(divContainer, params.progress[i].keyGameResult);
+        */
         }
     };
 })();
