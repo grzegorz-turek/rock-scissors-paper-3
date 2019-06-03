@@ -69,7 +69,6 @@
             keyRoundWinner: params.roundWinner,
             keyGameResult: (params.roundWonByPlayerNumber + ' - ' + params.roundWonByComputerNumber)
         });
-        console.log('params.progress', params.progress); // TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
     }
 
     function pleasePressTheNewGameButton() {
@@ -124,6 +123,8 @@
         document.querySelector('#modal-overlay').classList.add('show');
         document.querySelector('#modal-one').classList.add('show');
         showGameStats();
+        //showGameStatsEvol(); // TEST
+
     };
 
     var hideModal = function(event) {
@@ -142,6 +143,55 @@
             event.stopPropagation();
         });
     }
+
+    function showGameStatsEvol() { // TEST
+        var gameStatsData = [];
+        var divContainer = '';
+        var divRoundNumber = '';
+        var divPlayerMove = '';
+        var divRoundWinner = '';
+        var divGameResult = '';
+
+        gameStatsData.push({
+            key2RoundNumber: 'Round Number',
+            key2PlayerMove: 'Player Move',
+            key2ComputerMove: 'Computer Move',
+            key2RoundWinner: 'Round Winner',
+            key2GameResult: 'Score'
+        });
+        for (var i = 0; i < params.progress.length; i++) {
+            gameStatsData.push({
+                key2RoundNumber: params.progress[i].keyRoundNumber,
+                key2PlayerMove: params.progress[i].keyPlayerMove,
+                key2ComputerMove: params.progress[i].keyComputerMove,
+                key2RoundWinner: params.progress[i].keyRoundWinner,
+                key2GameResult: params.progress[i].keyGameResult
+            });
+        }
+        var mainDiv = document.getElementById('modalcontent');
+        mainDiv.innerHTML = '';
+        for (var i = 0; i < gameStatsData.length; i++) {
+            divContainer = document.createElement('div');
+            mainDiv.appendChild(divContainer);
+            divContainer.setAttribute('class', 'table__row');
+            divRoundNumber = document.createElement('div');
+            divContainer.appendChild(divRoundNumber);
+            divRoundNumber.innerHTML += gameStatsData[i].key2RoundNumber;
+            divPlayerMove = document.createElement('div');
+            divContainer.appendChild(divPlayerMove);
+            divPlayerMove.innerHTML += gameStatsData[i].key2PlayerMove;
+            divComputerMove = document.createElement('div');
+            divContainer.appendChild(divComputerMove);
+            divComputerMove.innerHTML += gameStatsData[i].key2ComputerMove;
+            divRoundWinner = document.createElement('div');
+            divContainer.appendChild(divRoundWinner);
+            divRoundWinner.innerHTML += gameStatsData[i].key2RoundWinner;
+            divGameResult = document.createElement('div');
+            divContainer.appendChild(divGameResult);
+            divGameResult.innerHTML += gameStatsData[i].key2GameResult;
+        }
+        console.log('testarray: ', gameStatsData);
+    };
 
     function showGameStats() {
         var mainDiv = document.getElementById('modalcontent');
