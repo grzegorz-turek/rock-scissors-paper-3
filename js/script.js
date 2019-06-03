@@ -141,7 +141,7 @@
             event.stopPropagation();
         });
     }
-    
+
     function createTableCell(container, content) {
         var div = document.createElement('div');
         container.appendChild(div);
